@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { components } from "@octokit/openapi-types";
+import type { components } from "@octokit/openapi-types";
 
 type ApprovalsAll = "all";
 export type Labels = components["schemas"]["pull-request"]["labels"];
@@ -23,7 +23,7 @@ export function getMinApprovals(labels: Labels): ApprovalsAll | number {
 export function requirementPassed(
   reviews: Review[],
   requestedReviewers: number,
-  minReviewers: number | ApprovalsAll
+  minReviewers: number | ApprovalsAll,
 ): boolean {
   const latestReviews = reviews
     .reverse()
@@ -33,9 +33,7 @@ export function requirementPassed(
       return array.findIndex((x) => review.user?.id === x.user?.id) === index;
     });
 
-  const approvedReviews = latestReviews.filter(
-    (review) => review.state.toLowerCase() === "approved"
-  );
+  const approvedReviews = latestReviews.filter((review) => review.state.toLowerCase() === "approved");
   core.info(`Approved reviews: ${approvedReviews.length}. Required: ${minReviewers}`);
 
   if (minReviewers === "all") {

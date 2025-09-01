@@ -1,9 +1,9 @@
 version: 2
 updates:
-- package-ecosystem: npm
+- package-ecosystem: bun
   directory: "/"
   schedule:
     interval: monthly
-    time: "13:00"
-  open-pull-requests-limit: 99
-  versioning-strategy: increase
+    time: "06:00"
+    timezone: "Europe/Vilnius"
+  open-pull-requests-limit: 10

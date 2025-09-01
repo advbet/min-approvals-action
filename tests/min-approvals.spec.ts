@@ -1,10 +1,10 @@
 import { describe, expect, it, spyOn } from "bun:test";
 import * as core from "@actions/core";
-import { getMinApprovals, Labels, requirementPassed, Reviews } from "../src/min-approvals";
+import { getMinApprovals, type Labels, type Reviews, requirementPassed } from "../src/min-approvals";
 
 type RecursivePartial<T> = {
   [P in keyof T]?: RecursivePartial<T[P]>;
-}
+};
 
 spyOn(core, "info").mockImplementation(() => {
   return;
@@ -45,8 +45,8 @@ describe("testing requirement passing", () => {
     const reviews: RecursivePartial<Reviews> = [
       {
         user: { id: 1 },
-        state: "APPROVED"
-      }
+        state: "APPROVED",
+      },
     ];
     expect(requirementPassed(reviews as Reviews, 2, 2)).toBe(false);
   });
@@ -55,12 +55,12 @@ describe("testing requirement passing", () => {
     const reviews: RecursivePartial<Reviews> = [
       {
         user: { id: 1 },
-        state: "APPROVED"
+        state: "APPROVED",
       },
       {
         user: { id: 2 },
-        state: "APPROVED"
-      }
+        state: "APPROVED",
+      },
     ];
     expect(requirementPassed(reviews as Reviews, 2, 2)).toBe(true);
   });
@@ -69,12 +69,12 @@ describe("testing requirement passing", () => {
     const reviews: RecursivePartial<Reviews> = [
       {
         user: { id: 1 },
-        state: "APPROVED"
+        state: "APPROVED",
       },
       {
         user: { id: 1 },
-        state: "APPROVED"
-      }
+        state: "APPROVED",
+      },
     ];
     expect(requirementPassed(reviews as Reviews, 2, 2)).toBe(false);
   });
@@ -83,12 +83,12 @@ describe("testing requirement passing", () => {
     const reviews: RecursivePartial<Reviews> = [
       {
         user: { id: 1 },
-        state: "APPROVED"
+        state: "APPROVED",
       },
       {
         user: { id: 2 },
-        state: "APPROVED"
-      }
+        state: "APPROVED",
+      },
     ];
     expect(requirementPassed(reviews as Reviews, 2, "all")).toBe(false);
   });
@@ -97,12 +97,12 @@ describe("testing requirement passing", () => {
     const reviews: RecursivePartial<Reviews> = [
       {
         user: { id: 1 },
-        state: "APPROVED"
+        state: "APPROVED",
       },
       {
         user: { id: 2 },
-        state: "DISMISSED"
-      }
+        state: "DISMISSED",
+      },
     ];
     expect(requirementPassed(reviews as Reviews, 2, 2)).toBe(false);
   });

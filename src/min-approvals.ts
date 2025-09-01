@@ -12,7 +12,7 @@ export function getMinApprovals(labels: Labels): ApprovalsAll | number {
 
   for (const label of labels) {
     const m = label.name.match(pattern);
-    if (m) {
+    if (m?.[1]) {
       return m[1] === "all" ? m[1] : parseInt(m[1], 10);
     }
   }

@@ -12,12 +12,12 @@ on:
   pull_request:
     types: [labeled, unlabeled]
   pull_request_review:
-    types: [submitted, dismissed]    
+    types: [submitted, dismissed]
 
 jobs:
   approved-by:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: advbet/min-approvals-action@v1
+      - uses: advbet/min-approvals-action@v2
 ```

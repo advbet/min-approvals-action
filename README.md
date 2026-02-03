@@ -16,7 +16,7 @@ on:
 
 jobs:
   approved-by:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - uses: advbet/min-approvals-action@v2
